@@ -32,7 +32,7 @@ describe('Testing a session with the GetEtherIntent and Coinbase Slot', function
                     "slots": {
                         "marketPlace": {
                             "name": "marketPlace",
-                            "value": "coinbase"
+                            "value": "kraken"
                         }
                     }
                 },

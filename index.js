@@ -15,19 +15,20 @@ var handlers = {
     'LaunchRequest': function () {
         this.emit('GetEtherPriceIntent');
     },
-    "AMAZON.StopIntent": function() {
-        this.emit(':tell', "Goodbye!");  
-      },
-      "AMAZON.CancelIntent": function() {
-        this.emit(':tell', "Goodbye!");  
-  },
+    "AMAZON.StopIntent": function () {
+        this.emit(':tell', "Goodbye!");
+    },
+    "AMAZON.CancelIntent": function () {
+        this.emit(':tell', "Goodbye!");
+    },
     'GetEtherPriceIntent': function () {
-        var exchange = 'coinbase';
+        //var exchange = 'coinbase';
+        var exchange = this.event.request.intent.slots.marketPlace.value || 'coinbase' ;
 
         coinTicker(exchange, 'ETH_USD')
             .then(res => {
                 let response = res.ask;
-                this.emit(':tell', 'Der aktuelle Ether Preis auf Coinbase beträgt ' + roundToTwoDecimalPoints(response) + ' Dollar');
+                this.emit(':tell', 'Der aktuelle Ether Preis auf ' + exchange + ' beträgt ' + roundToTwoDecimalPoints(response) + ' Dollar');
             });
     }
 };
